@@ -25,7 +25,15 @@
 				background-position: center;
 				background-attachment: fixed;
 			}
+/* Mobile fix for background image */
+@media (max-width: 768px) {
+    .hero-section {
+        background-attachment: scroll;
+        min-height: 100vh;
+    }
+}
 
+			
 			.nav-link {
 				position: relative;
 				transition: color 0.3s ease;
@@ -1360,5 +1368,6 @@
 		</script>
 	</body>
 </html>
+
 
 
