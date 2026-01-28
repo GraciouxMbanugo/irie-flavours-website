@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Irie Flavours - Authentic Caribbean Restaurant</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Georgia", serif;
+				overflow-x: hidden;
+			}
+
+			.hero-section {
+				background:
+					linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+					url("./images/1a31ca7c-eeda-44d7-a4e0-9e405c949638.jpg");
+				background-size:cover;
+				background-position: center;
+				background-attachment: fixed;
+			}
+
+			.nav-link {
+				position: relative;
+				transition: color 0.3s ease;
+			}
+
+			.nav-link::after {
+				content: "";
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: #facc15;
+				transition: width 0.3s ease;
+			}
+
+			.nav-link:hover::after {
+				width: 100%;
+			}
+
+			.menu-card {
+				transition:
+					transform 0.3s ease,
+					box-shadow 0.3s ease;
+			}
+
+			.menu-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+			}
+
+			.btn-primary {
+				background: linear-gradient(135deg, #16a34a, #15803d);
+				transition: all 0.3s ease;
+			}
+
+			.btn-primary:hover {
+				transform: scale(1.05);
+				box-shadow: 0 10px 25px rgba(22, 163, 74, 0.3);
+			}
+
+			.smooth-scroll {
+				scroll-behavior: smooth;
+			}
+
+			.menu-item {
+				border-bottom: 1px dotted #d1d5db;
+				padding: 1rem 0;
+			}
+
+			.menu-item:last-child {
+				border-bottom: none;
+			}
+
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.fade-in-up {
+				animation: fadeInUp 0.8s ease-out;
+			}
+
+			.section-title {
+				font-size: 2.5rem;
+				font-weight: 700;
+				color: #1f2937;
+				margin-bottom: 1rem;
+			}
+
+			.mobile-menu {
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.3s ease;
+			}
+
+			.mobile-menu.active {
+				max-height: 500px;
+			}
+		</style>
+	</head>
+	<body class="smooth-scroll bg-gray-50">
+		<!-- Header -->
+		<header class="bg-white shadow-md sticky top-0 z-50">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="flex justify-between items-center py-4">
+					<!-- Logo -->
+					<div class="flex items-center">
+						<a href="#home" class="text-2xl font-bold text-green-700">
+							🌴 Irie Flavours
+						</a>
+					</div>
+
+					<!-- Desktop Navigation -->
+					<nav class="hidden md:flex space-x-8">
+						<a
+							href="#menu"
+							class="nav-link text-gray-700 hover:text-green-600 font-medium"
+							>Menu</a
+						>
+						<a
+							href="#order"
+							class="nav-link text-gray-700 hover:text-green-600 font-medium"
+							>Order/Reserve</a
+						>
+						<a
+							href="#about"
+							class="nav-link text-gray-700 hover:text-green-600 font-medium"
+							>About</a
+						>
+						<button
+							onclick="toggleCart()"
+							class="relative bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition">
+							Cart (<span id="cart-count">0</span>)
+						</button>
+					</nav>
+
+					<!-- Mobile Menu Button -->
+					<button onclick="toggleMobileMenu()" class="md:hidden text-gray-700">
+						<svg
+							class="w-6 h-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16"></path>
+						</svg>
+					</button>
+				</div>
+
+				<!-- Mobile Navigation -->
+				<div id="mobile-menu" class="mobile-menu md:hidden pb-4">
+					<a
+						href="#menu"
+						onclick="toggleMobileMenu()"
+						class="block py-2 text-gray-700 hover:text-green-600"
+						>Menu</a
+					>
+					<a
+						href="#order"
+						onclick="toggleMobileMenu()"
+						class="block py-2 text-gray-700 hover:text-green-600"
+						>Order/Reserve</a
+					>
+					<a
+						href="#about"
+						onclick="toggleMobileMenu()"
+						class="block py-2 text-gray-700 hover:text-green-600"
+						>About</a
+					>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<section
+			id="home"
+			class="hero-section min-h-screen flex items-center justify-center text-white">
+			<div class="text-center px-4 fade-in-up">
+				<h1 class="text-5xl md:text-7xl font-bold mb-6">
+					Authentic Caribbean Cuisine
+				</h1>
+				<p class="text-xl md:text-2xl mb-8">
+					Experience the vibrant flavors of the islands
+				</p>
+				<div class="space-x-4">
+					<a
+						href="#menu"
+						class="btn-primary inline-block px-8 py-3 text-white rounded-lg font-semibold"
+						>See Menu</a
+					>
+					<a
+						href="#order"
+						class="inline-block px-8 py-3 bg-white text-green-700 rounded-lg font-semibold hover:bg-gray-100 transition"
+						>Order/Reserve</a
+					>
+				</div>
+			</div>
+		</section>
+
+		<!-- Menu Categories -->
+		<section id="menu" class="py-20 bg-white">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-16">Our Menu</h2>
+
+				<div class="grid md:grid-cols-3 gap-8 mb-16">
+					<!-- Dinner Menu Card -->
+					<!-- <div
+						class="menu-card bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+						<div
+							class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+							<span class="text-8xl">🍗</span>
+						</div>
+						<div class="p-6 text-center">
+							<h3 class="text-2xl font-bold mb-2">Dinner Menu</h3>
+							<p class="text-gray-600 mb-4">
+								Enjoy our best Jamaican dinner meals cooked just for you
+							</p>
+							<a
+								href="#dinner-menu"
+								class="text-green-600 hover:text-green-700 font-semibold"
+								>See Menu →</a
+							>
+						</div>
+					</div> -->
+<!-- Dinner Menu Card -->
+<div class="menu-card bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+	<div class="h-48 overflow-hidden relative">
+		<img 
+			src="./images/breakfast.avif" 
+			alt="Jamaican Jerk Chicken with Rice and Peas" 
+			class="w-full h-full object-cover"
+		/>
+		<!-- Optional: Add overlay for better text contrast if needed -->
+		<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+	</div>
+	<div class="p-6 text-center">
+		<h3 class="text-2xl font-bold mb-2">Breakfast Menu</h3>
+		<p class="text-gray-600 mb-4">
+			Enjoy our best Jamaican dinner meals cooked just for you
+		</p>
+		<a
+								href="#dinner-menu"
+								class="text-green-600 hover:text-green-700 font-semibold"
+								>See Menu →</a
+							>
+	</div>
+</div>
+					<!-- Lunch Menu Card -->
+<div class="menu-card bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+	<div class="h-48 overflow-hidden relative">
+		<img 
+			src="./images/lunch.webp" 
+			alt="Jamaican Jerk Chicken with Rice and Peas" 
+			class="w-full h-full object-cover"
+		/>
+		<!-- Optional: Add overlay for better text contrast if needed -->
+		<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+	</div>
+	<div class="p-6 text-center">
+		<h3 class="text-2xl font-bold mb-2">Lunch Menu</h3>
+		<p class="text-gray-600 mb-4">
+			Enjoy our best Jamaican lunch meals cooked just for you
+		</p>
+	<a
+								href="#dinner-menu"
+								class="text-green-600 hover:text-green-700 font-semibold"
+								>See Menu →</a
+							>
+	</div>
+</div>
+
+
+<div class="menu-card bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+	<div class="h-48 overflow-hidden relative">
+		<img 
+			src="./images/Drinks.jfif" 
+			alt="Jamaican Jerk Chicken with Rice and Peas" 
+			class="w-full h-full object-cover"
+		/>
+		<!-- Optional: Add overlay for better text contrast if needed -->
+		<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+	</div>
+	<div class="p-6 text-center">
+		<h3 class="text-2xl font-bold mb-2">Drink Menu</h3>
+		<p class="text-gray-600 mb-4">
+			Drink menu with our signature and popular mixes
+		</p>
+		<a
+								href="#dinner-menu"
+								class="text-green-600 hover:text-green-700 font-semibold"
+								>See Menu →</a
+							>
+	</div>
+</div>
+
+					<!-- Drink Menu Card -->
+					<!-- <div
+						class="menu-card bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+						<div
+							class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+							<span class="text-8xl">🍹</span>
+						</div>
+						<div class="p-6 text-center">
+							<h3 class="text-2xl font-bold mb-2">Drink Menu</h3>
+							<p class="text-gray-600 mb-4">
+								Drink menu with our signature and popular mixes
+							</p>
+							<a
+								href="#drink-menu"
+								class="text-green-600 hover:text-green-700 font-semibold"
+								>See Menu →</a
+							>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+
+		<!-- Dinner Menu Section -->
+		<section id="dinner-menu" class="py-20 bg-gray-50">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-12">Dinner Menu</h2>
+
+				<div class="grid md:grid-cols-2 gap-12">
+					<!-- Appetizers -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Appetizers</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between">
+								<div>
+									<h4 class="font-semibold">Barbeque Wings</h4>
+								</div>
+								<span class="font-semibold text-green-600">$10.00</span>
+							</div>
+							<div class="menu-item flex justify-between">
+								<div>
+									<h4 class="font-semibold">Spicy Wings</h4>
+								</div>
+								<span class="font-semibold text-green-600">$10.00</span>
+							</div>
+							<div class="menu-item flex justify-between">
+								<div>
+									<h4 class="font-semibold">Pumpkin Soup</h4>
+								</div>
+								<span class="font-semibold text-green-600">$5.00 - $10.00</span>
+							</div>
+							<div class="menu-item flex justify-between">
+								<div>
+									<h4 class="font-semibold">Red Peas Soup</h4>
+								</div>
+								<span class="font-semibold text-green-600">$5.00 - $10.00</span>
+							</div>
+						</div>
+						<button
+							onclick="addCategoryToCart('dinner-appetizers')"
+							class="mt-6 w-full btn-primary text-white py-2 rounded-lg font-semibold">
+							Add All to Cart
+						</button>
+					</div>
+
+					<!-- Main Dishes -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Main Dishes</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Grilled Chicken</h4>
+									<button
+										onclick="addToCart('Grilled Chicken', 20.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$20.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Curry Goat with Rice & Peas</h4>
+									<button
+										onclick="addToCart('Curry Goat with Rice & Peas', 25.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$25.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Oxtail with Rice & Peas</h4>
+									<button
+										onclick="addToCart('Oxtail with Rice & Peas', 35.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$35.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fried Chicken</h4>
+									<button
+										onclick="addToCart('Fried Chicken', 20.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$20.00</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Sides -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Sides</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fries</h4>
+									<button
+										onclick="addToCart('Fries', 8.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$8.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fried Dumpling</h4>
+									<button
+										onclick="addToCart('Fried Dumpling', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00 each</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Biscuit</h4>
+									<button
+										onclick="addToCart('Biscuit', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00 each</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Festival</h4>
+									<button
+										onclick="addToCart('Festival', 2.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.50 each</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Desserts -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Desserts</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Ice Cream</h4>
+									<button
+										onclick="addToCart('Ice Cream', 7.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Ice Cream Cake</h4>
+									<button
+										onclick="addToCart('Ice Cream Cake', 12.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$12.50</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">
+										Cake (Vanilla/Red Velvet/Chocolate)
+									</h4>
+									<button
+										onclick="addToCart('Cake', 8.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$8.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Bread Pudding</h4>
+									<button
+										onclick="addToCart('Bread Pudding', 7.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.50</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Lunch Menu Section -->
+		<section id="lunch-menu" class="py-20 bg-white">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-12">Lunch Menu</h2>
+
+				<div class="grid md:grid-cols-2 gap-12">
+					<!-- Appetizers -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Appetizers</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Barbeque Wings</h4>
+									<button
+										onclick="addToCart('Barbeque Wings', 10.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$10.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Spicy Wings</h4>
+									<button
+										onclick="addToCart('Spicy Wings', 10.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$10.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Pumpkin Soup</h4>
+									<button
+										onclick="addToCart('Pumpkin Soup', 7.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00 - $10.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Red Peas Soup</h4>
+									<button
+										onclick="addToCart('Red Peas Soup', 7.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00 - $10.00</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Main Dishes -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Main Dishes</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Grilled Chicken</h4>
+									<button
+										onclick="addToCart('Grilled Chicken', 20.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$20.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Curry Goat with Rice & Peas</h4>
+									<button
+										onclick="addToCart('Curry Goat with Rice & Peas', 25.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$25.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Ackee and Saltfish</h4>
+									<button
+										onclick="addToCart('Ackee and Saltfish', 35.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$35.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fried Chicken</h4>
+									<button
+										onclick="addToCart('Fried Chicken', 20.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$20.00</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Sides -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Sides</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fries</h4>
+									<button
+										onclick="addToCart('Fries', 8.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$8.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fried Dumplings</h4>
+									<button
+										onclick="addToCart('Fried Dumplings', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00 each</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Biscuit</h4>
+									<button
+										onclick="addToCart('Biscuit', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00 each</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Festival</h4>
+									<button
+										onclick="addToCart('Festival', 2.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.50 each</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Desserts -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Desserts</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Ice Cream</h4>
+									<button
+										onclick="addToCart('Ice Cream', 7.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Ice Cream Cake</h4>
+									<button
+										onclick="addToCart('Ice Cream Cake', 12.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$12.50</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">
+										Cake (Vanilla/Red Velvet/Chocolate)
+									</h4>
+									<button
+										onclick="addToCart('Cake', 8.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$8.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Bread Pudding</h4>
+									<button
+										onclick="addToCart('Bread Pudding', 7.5)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.50</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Drink Menu Section -->
+		<section id="drink-menu" class="py-20 bg-gray-50">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-12">Drink Menu</h2>
+
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+					<!-- Beverages -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Beverages</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Coconut Water</h4>
+									<button
+										onclick="addToCart('Coconut Water', 3.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$3.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Bottle Soda</h4>
+									<button
+										onclick="addToCart('Bottle Soda', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Fruit Juice</h4>
+									<button
+										onclick="addToCart('Fruit Juice', 3.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$3.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Orange Juice</h4>
+									<button
+										onclick="addToCart('Orange Juice', 3.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$3.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Water</h4>
+									<button
+										onclick="addToCart('Water', 2.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$2.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Tropical Riddim</h4>
+									<button
+										onclick="addToCart('Tropical Riddim', 5.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Cocktails -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Cocktails</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Daiquiri</h4>
+									<button
+										onclick="addToCart('Daiquiri', 8.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$8.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Long Island Iced Tea</h4>
+									<button
+										onclick="addToCart('Long Island Iced Tea', 10.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$10.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Purple Rain</h4>
+									<button
+										onclick="addToCart('Purple Rain', 7.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Long Distance Rum</h4>
+									<button
+										onclick="addToCart('Long Distance Rum', 9.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$9.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Tequila Sunrise</h4>
+									<button
+										onclick="addToCart('Tequila Sunrise', 7.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$7.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Reggae Jammin</h4>
+									<button
+										onclick="addToCart('Reggae Jammin', 12.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$12.00</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Beers & Spirits -->
+					<div class="bg-white p-8 rounded-lg shadow">
+						<h3 class="text-2xl font-bold mb-6 text-green-700">Beers</h3>
+						<div class="space-y-4">
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Red Stripe</h4>
+									<button
+										onclick="addToCart('Red Stripe', 4.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$4.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Guinness</h4>
+									<button
+										onclick="addToCart('Guinness', 5.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Heineken</h4>
+									<button
+										onclick="addToCart('Heineken', 5.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Dragon</h4>
+									<button
+										onclick="addToCart('Dragon', 5.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Light Beer</h4>
+									<button
+										onclick="addToCart('Light Beer', 4.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$4.00</span>
+							</div>
+							<div class="menu-item flex justify-between items-start">
+								<div class="flex-1">
+									<h4 class="font-semibold">Smirnoff Ice</h4>
+									<button
+										onclick="addToCart('Smirnoff Ice', 5.0)"
+										class="text-sm text-green-600 hover:underline mt-1">
+										+ Add to Cart
+									</button>
+								</div>
+								<span class="font-semibold text-green-600">$5.00</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Order/Reserve Section -->
+		<section id="order" class="py-20 bg-white">
+			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-8">Orders / Reservations</h2>
+				<p class="text-center text-xl text-gray-600 mb-12">
+					Place orders or book reservations below
+				</p>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<!-- Contact Information -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow text-center">
+						<div class="text-6xl mb-6">📞</div>
+						<h3 class="text-2xl font-bold mb-4">Call Us</h3>
+						<a
+							href="tel:8761234555"
+							class="text-3xl font-bold text-green-600 hover:text-green-700"
+							>(876) 123-4555</a
+						>
+						<p class="mt-4 text-gray-600">Available Mon-Sun, 11am - 10pm</p>
+					</div>
+
+					<!-- Location -->
+					<div class="bg-gray-50 p-8 rounded-lg shadow text-center">
+						<div class="text-6xl mb-6">📍</div>
+						<h3 class="text-2xl font-bold mb-4">Visit Our Location</h3>
+						<p class="text-lg text-gray-700">45 Four Winds Drive</p>
+						<p class="text-lg text-gray-700 mb-4">
+							Noth York, Toronto, Ontario
+						</p>
+						<button
+							onclick="window.open('https://maps.google.com')"
+							class="btn-primary text-white px-6 py-2 rounded-lg font-semibold">
+							Get Directions
+						</button>
+					</div>
+				</div>
+
+				<!-- Reservation Form -->
+				<div class="mt-12 bg-gray-50 p-8 rounded-lg shadow">
+					<h3 class="text-2xl font-bold mb-6 text-center">
+						Make a Reservation
+					</h3>
+					<form id="reservation-form" class="space-y-4">
+						<div class="grid md:grid-cols-2 gap-4">
+							<input
+								type="text"
+								placeholder="Your Name"
+								required
+								class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none" />
+							<input
+								type="tel"
+								placeholder="Phone Number"
+								required
+								class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none" />
+						</div>
+						<div class="grid md:grid-cols-2 gap-4">
+							<input
+								type="date"
+								required
+								class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none" />
+							<input
+								type="time"
+								required
+								class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none" />
+						</div>
+						<input
+							type="number"
+							placeholder="Number of Guests"
+							min="1"
+							required
+							class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none" />
+						<textarea
+							placeholder="Special Requests (Optional)"
+							rows="4"
+							class="w-full p-3 border border-gray-300 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
+						<button
+							type="submit"
+							class="w-full btn-primary text-white py-3 rounded-lg font-semibold text-lg">
+							Submit Reservation
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="py-20 bg-gray-50">
+			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-12">About Irie Flavours</h2>
+
+				<div class="bg-white p-8 md:p-12 rounded-lg shadow">
+					<p class="text-lg text-gray-700 mb-6 leading-relaxed">
+						Welcome to Irie Flavours, where authentic Caribbean cuisine meets
+						island hospitality. Since 2018, we have been serving the finest
+						Jamaican dishes crafted with love, tradition, and the freshest
+						ingredients.
+					</p>
+					<p class="text-lg text-gray-700 mb-6 leading-relaxed">
+						Our chefs bring decades of experience from Jamaica, Trinidad, and
+						Barbados, ensuring every dish delivers an authentic taste of the
+						islands. From our signature jerk chicken to our rich curry goat,
+						each recipe is a celebration of Caribbean culture and flavors.
+					</p>
+					<p class="text-lg text-gray-700 mb-6 leading-relaxed">
+						"Irie" is a Jamaican term meaning positive, good, or pleasing.
+						That's our promise to you – positive vibes, good food, and a
+						pleasing experience every time you dine with us.
+					</p>
+
+					<div class="grid md:grid-cols-3 gap-6 mt-12">
+						<div class="text-center">
+							<div class="text-5xl mb-3">🍗</div>
+							<h4 class="font-bold text-xl mb-2">Authentic Recipes</h4>
+							<p class="text-gray-600">
+								Traditional methods passed down through generations
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="text-5xl mb-3">🌴</div>
+							<h4 class="font-bold text-xl mb-2">Island Vibes</h4>
+							<p class="text-gray-600">
+								Experience Caribbean culture with every bite
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="text-5xl mb-3">❤️</div>
+							<h4 class="font-bold text-xl mb-2">Made with Love</h4>
+							<p class="text-gray-600">
+								Fresh ingredients, bold flavors, warm hospitality
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Third Party Delivery -->
+		<section class="py-20 bg-white">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<h2 class="section-title text-center mb-12">
+					Order Through Your Favorite App
+				</h2>
+				<div class="grid md:grid-cols-3 gap-8">
+					<a
+						href="#"
+						class="bg-black text-white p-12 rounded-lg text-center hover:bg-gray-800 transition shadow-lg">
+						<div class="text-4xl font-bold mb-2">Uber</div>
+						<div class="text-2xl">Eats</div>
+					</a>
+					<a
+						href="#"
+						class="bg-red-600 text-white p-12 rounded-lg text-center hover:bg-red-700 transition shadow-lg">
+						<div class="text-4xl font-bold mb-2">DoorDash</div>
+					</a>
+					<a
+						href="#"
+						class="bg-orange-500 text-white p-12 rounded-lg text-center hover:bg-orange-600 transition shadow-lg">
+						<div class="text-4xl font-bold mb-2">Skip</div>
+						<div class="text-xl">The Dishes</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Shopping Cart Sidebar -->
+		<div
+			id="cart-sidebar"
+			class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden"
+			onclick="toggleCart()">
+			<div
+				class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl overflow-y-auto"
+				onclick="event.stopPropagation()">
+				<div class="p-6">
+					<div class="flex justify-between items-center mb-6 border-b pb-4">
+						<h2 class="text-2xl font-bold text-gray-800">Your Cart</h2>
+						<button
+							onclick="toggleCart()"
+							class="text-gray-600 hover:text-black text-3xl">
+							&times;
+						</button>
+					</div>
+					<div id="cart-items" class="space-y-4 mb-6"></div>
+					<div class="border-t pt-4">
+						<div
+							class="flex justify-between text-xl font-bold text-gray-800 mb-6">
+							<span>Total:</span>
+							<span id="cart-total">$0.00</span>
+						</div>
+						<button
+							onclick="checkout()"
+							class="w-full btn-primary text-white py-3 rounded-lg font-semibold text-lg mb-3">
+							Proceed to Checkout
+						</button>
+						<button
+							onclick="clearCart()"
+							class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition">
+							Clear Cart
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer class="bg-gray-900 text-white py-12">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid md:grid-cols-3 gap-8 mb-8">
+					<div>
+						<h3 class="text-2xl font-bold mb-4">🌴 Irie Flavours</h3>
+						<p class="text-gray-400">Authentic Caribbean cuisine since 2018</p>
+					</div>
+					<div>
+						<h4 class="text-xl font-bold mb-4">Quick Links</h4>
+						<div class="space-y-2">
+							<a
+								href="#menu"
+								class="block text-gray-400 hover:text-white transition"
+								>Menu</a
+							>
+							<a
+								href="#order"
+								class="block text-gray-400 hover:text-white transition"
+								>Order/Reserve</a
+							>
+							<a
+								href="#about"
+								class="block text-gray-400 hover:text-white transition"
+								>About</a
+							>
+						</div>
+					</div>
+					<div>
+						<h4 class="text-xl font-bold mb-4">Contact</h4>
+						<p class="text-gray-400">45 Four Winds Drive</p>
+						<p class="text-gray-400 mb-2">North York, Ontario</p>
+						<p class="text-gray-400">(876) 123-4555</p>
+					</div>
+				</div>
+				<div class="text-center border-t border-gray-800 pt-6">
+					<p class="text-gray-400">
+						© 2026 Irie Flavours. All rights reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			let cart = [];
+
+			function toggleMobileMenu() {
+				const menu = document.getElementById("mobile-menu");
+				menu.classList.toggle("active");
+			}
+
+			function toggleCart() {
+				const sidebar = document.getElementById("cart-sidebar");
+				sidebar.classList.toggle("hidden");
+				updateCart();
+			}
+
+			function addToCart(name, price) {
+				const existingItem = cart.find((item) => item.name === name);
+				if (existingItem) {
+					existingItem.quantity++;
+				} else {
+					cart.push({ name, price, quantity: 1 });
+				}
+				updateCart();
+
+				// Show a brief notification
+				const notification = document.createElement("div");
+				notification.className =
+					"fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50";
+				notification.textContent = `${name} added to cart!`;
+				document.body.appendChild(notification);
+				setTimeout(() => notification.remove(), 2000);
+			}
+
+			function updateQuantity(index, change) {
+				cart[index].quantity += change;
+				if (cart[index].quantity <= 0) {
+					cart.splice(index, 1);
+				}
+				updateCart();
+			}
+
+			function updateCart() {
+				const cartItems = document.getElementById("cart-items");
+				const cartCount = document.getElementById("cart-count");
+				const cartTotal = document.getElementById("cart-total");
+
+				cartCount.textContent = cart.length;
+
+				if (cart.length === 0) {
+					cartItems.innerHTML =
+						'<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+					cartTotal.textContent = "$0.00";
+					return;
+				}
+
+				let total = 0;
+				cartItems.innerHTML = cart
+					.map((item, index) => {
+						total += item.price * item.quantity;
+						return `
+                    <div class="flex justify-between items-center pb-4 border-b">
+                        <div class="flex-1">
+                            <p class="font-semibold">${item.name}</p>
+                            <p class="text-sm text-gray-600">${item.price.toFixed(2)} each</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="updateQuantity(${index}, -1)" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded">-</button>
+                            <span class="font-bold">${item.quantity}</span>
+                            <button onclick="updateQuantity(${index}, 1)" class="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded">+</button>
+                        </div>
+                        <div class="ml-4 font-bold text-green-600">${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                `;
+					})
+					.join("");
+
+				cartTotal.textContent = `${total.toFixed(2)}`;
+			}
+
+			function clearCart() {
+				if (confirm("Are you sure you want to clear your cart?")) {
+					cart = [];
+					updateCart();
+				}
+			}
+
+			function checkout() {
+				if (cart.length === 0) {
+					alert("Your cart is empty!");
+					return;
+				}
+
+				const total = cart.reduce(
+					(sum, item) => sum + item.price * item.quantity,
+					0,
+				);
+				const orderSummary = cart
+					.map((item) => `${item.quantity}x ${item.name}`)
+					.join("\n");
+
+				if (
+					confirm(
+						`Order Summary:\n\n${orderSummary}\n\nTotal: ${total.toFixed(2)}\n\nProceed to checkout?`,
+					)
+				) {
+					alert(
+						"Thank you for your order! Please call (876) 123-4555 to complete your order or use one of our delivery partners.",
+					);
+					cart = [];
+					updateCart();
+					toggleCart();
+				}
+			}
+
+			// Reservation form handler
+			document
+				.getElementById("reservation-form")
+				.addEventListener("submit", function (e) {
+					e.preventDefault();
+					alert(
+						"Thank you for your reservation! We will contact you shortly to confirm.",
+					);
+					this.reset();
+				});
+
+			// Smooth scrolling for anchor links
+			document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+				anchor.addEventListener("click", function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute("href"));
+					if (target) {
+						target.scrollIntoView({ behavior: "smooth", block: "start" });
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
